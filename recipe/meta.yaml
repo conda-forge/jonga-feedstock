@@ -14,20 +14,20 @@ source:
   '{{ hash_type }}': '{{ hash_value }}'
 
 build:
-  number: 1000
-  skip: True  # [win]
+  number: 1001
+  skip: True  # [win or py2k]
   script: "{{ PYTHON }} -m pip install . --no-deps -vv"
 
 requirements:
   host:
-    - python >=3.3
+    - python
     - setuptools
     - pip
     - pygraphviz
     - pytest
     - pytest-runner
   run:
-    - python >=3.3
+    - python
     - pygraphviz
 
 test:
