@@ -1,20 +1,17 @@
 {% set name = "jonga" %}
 {% set version = "0.0.4" %}
-{% set file_ext = "tar.gz" %}
-{% set hash_type = "sha256" %}
-{% set hash_value = "d258421c66887cb10122d3237e06bc5b14a4809fdcef4654b62dc2e397fb0892" %}
 
 package:
   name: '{{ name|lower }}'
   version: '{{ version }}'
 
 source:
-  fn: '{{ name }}-{{ version }}.{{ file_ext }}'
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ file_ext }}
-  '{{ hash_type }}': '{{ hash_value }}'
+  fn: '{{ name }}-{{ version }}.tar.gz'
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  'sha256': 'd258421c66887cb10122d3237e06bc5b14a4809fdcef4654b62dc2e397fb0892'
 
 build:
-  number: 1001
+  number: 1002
   skip: True  # [win or py2k]
   script: "{{ PYTHON }} -m pip install . --no-deps -vv"
 
