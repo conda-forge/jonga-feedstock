@@ -1,39 +1,42 @@
 {% set name = "jonga" %}
 {% set version = "0.0.4" %}
 
+
 package:
-  name: '{{ name|lower }}'
-  version: '{{ version }}'
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  fn: '{{ name }}-{{ version }}.tar.gz'
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  'sha256': 'd258421c66887cb10122d3237e06bc5b14a4809fdcef4654b62dc2e397fb0892'
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jonga-{{ version }}.tar.gz
+  sha256: d258421c66887cb10122d3237e06bc5b14a4809fdcef4654b62dc2e397fb0892
 
 build:
   number: 1004
-  skip: True  # [win or py2k]
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
-    - python
-    - setuptools
+    - python >=3.6
     - pip
-    - pygraphviz
-    - pytest
-    - pytest-runner
+    # - pygraphviz
+    # - pytest
+    # - pytest-runner
   run:
-    - python
+    - python >=3.6
     - pygraphviz
 
 test:
   imports:
     - jonga
+  commands:
+    - pip check
+  requires:
+    - pip
 
 about:
   home: https://github.com/bwohlberg/jonga
-  license: GNU General Public v2 or later (GPLv2+)
+  license: GPL-2.0-or-later
   license_family: GPL2
   license_file: '{{ environ["RECIPE_DIR"] }}/LICENSE'
   summary: 'Python function call graph visualization'
