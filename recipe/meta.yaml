@@ -7,23 +7,22 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jonga-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/jonga-{{ version }}.tar.gz
   sha256: d258421c66887cb10122d3237e06bc5b14a4809fdcef4654b62dc2e397fb0892
 
 build:
-  number: 1004
+  number: 1005
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
+    - setuptools
     - pip
-    # - pygraphviz
-    # - pytest
     - pytest-runner
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - pygraphviz
 
 test:
@@ -33,6 +32,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/bwohlberg/jonga
