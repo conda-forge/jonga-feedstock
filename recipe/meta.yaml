@@ -19,9 +19,7 @@ requirements:
   host:
     - python {{ python_min }}
     - pip
-    # - pygraphviz
-    # - pytest
-    - pytest-runner
+    - setuptools
   run:
     - python >={{ python_min }}
     - pygraphviz
